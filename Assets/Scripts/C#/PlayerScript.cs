@@ -6,6 +6,7 @@ public class PlayerScript : MonoBehaviour {
 	public Vector2 speed = new Vector2 (50, 50);
 	private Vector2 movement;
 	private Rigidbody2D RigidBodyComponent;
+	int health=500;
 	// Use this for initialization
 
 	void Start () {
@@ -14,15 +15,23 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float inputX = Input.GetAxis("Horizontal");
-
-		movement = new Vector2 (inputX * speed.x, 0);
+		
 		if(InFront){
+
 			if(Input.GetKeyDown(KeyCode.UpArrow)){
 				GetComponent<SpriteRenderer> ().enabled=false;
 
+
+			} else if(Input.GetKeyDown(KeyCode.DownArrow)){
+				GetComponent<SpriteRenderer> ().enabled=true;
 			}
 		}
+		if(GetComponent<SpriteRenderer> ().enabled){
+			float inputX = Input.GetAxis("Horizontal");
+
+			movement = new Vector2 (inputX * speed.x, 0);
+		}
+
 
 	}
 	void OnCollisionEnter2D(Collision2D coll){

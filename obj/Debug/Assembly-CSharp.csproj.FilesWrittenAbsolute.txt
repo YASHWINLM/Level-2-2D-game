@@ -1,0 +1,17 @@
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/league/Desktop/Level-2-2D-game/obj/Debug/Assembly-CSharp.dll
+/Users/league/Desktop/Level-2-2D-game/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/UnityEngine.dll
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/UnityEditor.dll
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/Mono.Cecil.dll
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/Unity.DataContract.dll
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/Mono.Cecil.Mdb.dll
