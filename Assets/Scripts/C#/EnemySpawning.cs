@@ -19,7 +19,7 @@ public class EnemySpawning : MonoBehaviour {
 	IEnumerator StartSpawnCoroutine(){
 		while(true){
 			yield return new WaitForSeconds (5);
-			Instantiate (Enemy,new Vector2(Random.Range(0,6), Random.Range(0,6)), Quaternion.identity);
+			Instantiate (Enemy,new Vector2(Random.Range(0,6), 1.15f), Quaternion.identity);
 		}	
 	}
 }

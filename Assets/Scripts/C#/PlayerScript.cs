@@ -2,11 +2,13 @@
 using System.Collections;
 
 public class PlayerScript : MonoBehaviour {
+	public GUIStyle skin;
+	public GameObject bullet;
 	private bool InFront;
 	public Vector2 speed = new Vector2 (50, 50);
 	private Vector2 movement;
 	private Rigidbody2D RigidBodyComponent;
-	int health=500;
+	public int health=500;
 	// Use this for initialization
 
 	void Start () {
@@ -31,12 +33,28 @@ public class PlayerScript : MonoBehaviour {
 
 			movement = new Vector2 (inputX * speed.x, 0);
 		}
+		if(Input.GetKeyDown(KeyCode.Space)){
+			GameObject gameObject=(GameObject)Instantiate (bullet,new Vector2(1f,-0.31f), Quaternion.identity);
+			gameObject.transform.SetParent (this.transform);
+			gameObject.transform.localPosition = new Vector2 (1f, -0.1f);
 
+		}
+	
 
 	}
-	void OnCollisionEnter2D(Collision2D coll){
-		//movement = new Vector2 (inputX * speed.x, 0);
+	void OnCollisionEnter2D(Collision2D col) {
+		if(col.transform.name.Equals("jack(Clone)")){
+			Debug.Log (health-=500);
+
+		}
+		if(health==0){
+			GetComponent<SpriteRenderer> ().enabled=false;
+			Destroy (Camera.main);
+
+
+		}
 	}
+
 	void OnTriggerEnter2D(Collider2D colldr){
 		InFront = true;
 		
@@ -52,6 +70,9 @@ public class PlayerScript : MonoBehaviour {
 		if(InFront){
 			GUI.Label (new Rect(100,100,260,100),"Press the up arrow to enter the Houses to collect ammo and money!");
 
+		}
+		if(health==0){
+			GUI.Label (new Rect(50,50,500,500),"Mission Failed we'll get 'em next time", skin);
 		}
 	}
 }
