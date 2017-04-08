@@ -8,7 +8,18 @@ public class PlayerScript : MonoBehaviour {
 	public Vector2 speed = new Vector2 (50, 50);
 	private Vector2 movement;
 	private Rigidbody2D RigidBodyComponent;
-	public int health=500;
+	public float health=500f;
+	public Texture2D emptyTex;
+	public Texture2D fullTex;
+	public GUIStyle progress_empty;
+	public GUIStyle progress_full;
+
+	//current progress
+	public float barDisplay;
+
+	Vector2 pos = new Vector2(0,0);
+	Vector2 size = new Vector2(250,50);
+
 	// Use this for initialization
 
 	void Start () {
@@ -35,16 +46,17 @@ public class PlayerScript : MonoBehaviour {
 		}
 		if(Input.GetKeyDown(KeyCode.Space)){
 			GameObject gameObject=(GameObject)Instantiate (bullet,new Vector2(1f,-0.31f), Quaternion.identity);
-			gameObject.transform.SetParent (this.transform);
-			gameObject.transform.localPosition = new Vector2 (1f, -0.1f);
+			gameObject.transform.localPosition = this.transform.localPosition;
 
 		}
-	
+		//the player's health
+		barDisplay =health/500f;
 
 	}
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.transform.name.Equals("jack(Clone)")){
-			Debug.Log (health-=500);
+			Debug.Log (health-=5);
+
 
 		}
 		if(health==0){
@@ -55,7 +67,16 @@ public class PlayerScript : MonoBehaviour {
 		}
 	}
 
+
+
+
+
+
+		
+
+
 	void OnTriggerEnter2D(Collider2D colldr){
+		
 		InFront = true;
 		
 	}
@@ -67,6 +88,17 @@ public class PlayerScript : MonoBehaviour {
 		RigidBodyComponent.velocity = movement;
 	}
 	void OnGUI(){
+		//draw the background:
+		GUI.BeginGroup(new Rect(pos.x, pos.y, size.x, size.y), emptyTex, progress_empty);
+
+		GUI.Box(new Rect(pos.x, pos.y, size.x, size.y), fullTex, progress_full);
+
+		//draw the filled-in part:
+		GUI.BeginGroup(new Rect(0, 0, size.x * barDisplay, size.y));
+		GUI.Box(new Rect(0, 0, size.x, size.y), fullTex, progress_full);
+
+		GUI.EndGroup();
+		GUI.EndGroup();
 		if(InFront){
 			GUI.Label (new Rect(100,100,260,100),"Press the up arrow to enter the Houses to collect ammo and money!");
 
