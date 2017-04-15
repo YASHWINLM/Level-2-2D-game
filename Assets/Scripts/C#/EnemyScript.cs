@@ -6,27 +6,26 @@ public class EnemyScript : MonoBehaviour {
 	float MoveSpeed = 0.04f;
 	int MaxDist = 10;
 	int MinDist = 5;
+	GameObject Player;
+	Vector3 pos;
 
 	// Use this for initialization
 	void Start () {
-	
+		 pos = transform.position;
+		Player= GameObject.FindWithTag("Player");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		GameObject Player= GameObject.FindWithTag("Player");
-		transform.LookAt(Player.transform);
+		
+		//transform.LookAt(Player.transform);
 
-		if(Vector3.Distance(transform.position,Player.transform.position) >= MinDist){
+		if(Player.transform.position.x <= MinDist){
+				
+				transform.Translate (MoveSpeed,0f,0f);
 
-			transform.position += transform.forward*MoveSpeed*Time.deltaTime;
 
 
-
-			if(Vector3.Distance(transform.position,Player.transform.position) <= MaxDist)
-			{
-				//Here Call any function U want Like Shoot at here or something
-			} 
 
 		}
 	}
