@@ -8,7 +8,7 @@ public class PlayerScript : MonoBehaviour {
 	public Vector2 speed = new Vector2 (50, 50);
 	private Vector2 movement;
 	private Rigidbody2D RigidBodyComponent;
-	public float health=500f;
+	public float health=200f;
 	public Texture2D emptyTex;
 	public Texture2D fullTex;
 	public GUIStyle progress_empty;
@@ -50,12 +50,12 @@ public class PlayerScript : MonoBehaviour {
 
 		}
 		//the player's health
-		barDisplay =health/500f;
+		barDisplay =health/200f;
 
 	}
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.transform.name.Equals("jack(Clone)")){
-			Debug.Log (health-=5);
+			Debug.Log (health-=10);
 
 
 		}
@@ -91,11 +91,11 @@ public class PlayerScript : MonoBehaviour {
 		//draw the background:
 		GUI.BeginGroup(new Rect(pos.x, pos.y, size.x, size.y), emptyTex, progress_empty);
 
-		GUI.Box(new Rect(pos.x, pos.y, size.x, size.y), fullTex, progress_full);
+		GUI.Box(new Rect(pos.x, pos.y, size.x, size.y), emptyTex, progress_full);
 
 		//draw the filled-in part:
-		GUI.BeginGroup(new Rect(0, 0, size.x * barDisplay, size.y));
-		GUI.Box(new Rect(0, 0, size.x, size.y), fullTex, progress_full);
+		GUI.BeginGroup(new Rect(0, 0, size.x * barDisplay*0.77f, size.y));
+		GUI.Box(new Rect(pos.x, pos.x, size.x, size.y), fullTex, progress_full);
 
 		GUI.EndGroup();
 		GUI.EndGroup();

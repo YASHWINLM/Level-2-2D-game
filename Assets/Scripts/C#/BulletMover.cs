@@ -10,7 +10,14 @@ public class BulletMover : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
 		transform.position+=new Vector3(0.4f, 0f);
+		if(transform.position.x>=20){
+			
+			Destroy (this.gameObject);
+
+		}
+
 	}
 	void OnCollisionEnter2D(Collision2D col) {
 
@@ -19,5 +26,6 @@ public class BulletMover : MonoBehaviour {
 			Destroy (this.gameObject);
 
 		}
+
 	}
 }
