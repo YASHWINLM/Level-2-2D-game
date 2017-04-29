@@ -6,13 +6,13 @@ public class EnemyScript : MonoBehaviour {
 	float MoveSpeed = 0.04f;
 	int MaxDist = 10;
 	int MinDist = 5;
-	GameObject Player;
+	PlayerScript Player;
 	Vector3 pos;
 
 	// Use this for initialization
 	void Start () {
 		 pos = transform.position;
-		Player= GameObject.FindWithTag("Player");
+		Player = GameObject.Find ("github_octocat").GetComponent<PlayerScript>();
 	}
 	
 	// Update is called once per frame

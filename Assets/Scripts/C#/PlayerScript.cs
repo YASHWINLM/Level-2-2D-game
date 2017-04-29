@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour {
 	private Vector2 movement;
 	private Rigidbody2D RigidBodyComponent;
 	public float health=200f;
+	public bool TurnedLeft;
 	public Texture2D emptyTex;
 	public Texture2D fullTex;
 	public GUIStyle progress_empty;
@@ -45,17 +46,35 @@ public class PlayerScript : MonoBehaviour {
 			movement = new Vector2 (inputX * speed.x, 0);
 		}
 		if(Input.GetKeyDown(KeyCode.Space)){
-			GameObject gameObject=(GameObject)Instantiate (bullet,new Vector2(1f,-0.31f), Quaternion.identity);
-			gameObject.transform.localPosition = this.transform.localPosition;
+			GameObject gameObject=(GameObject)Instantiate (bullet,new Vector2(), Quaternion.identity);
+			gameObject.transform.SetParent (this.transform);
+			gameObject.transform.localPosition = new Vector2 (2f,-0.5f);
+			gameObject.transform.Rotate (0f, 0f, -90f);
 
 		}
 		//the player's health
 		barDisplay =health/200f;
 
+		if(Input.GetKeyDown(KeyCode.A)){
+
+			if(TurnedLeft==false){
+			TurnedLeft =true;
+				this.transform.Rotate (new Vector3(0f, 180f, 0f));
+			}
+		
+		}
+		if(Input.GetKeyDown(KeyCode.D)){
+
+			if(TurnedLeft==true){
+				TurnedLeft =false;
+				this.transform.Rotate (new Vector3(0f, -180f, 0f));
+			}
+
+		}
 	}
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.transform.name.Equals("jack(Clone)")){
-			Debug.Log (health-=10);
+			Debug.Log ("player collided: " + (health-=10), col.transform);
 
 
 		}
