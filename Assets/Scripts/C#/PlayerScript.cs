@@ -4,6 +4,8 @@ using System.Collections;
 public class PlayerScript : MonoBehaviour {
 	public GUIStyle skin;
 	public GameObject bullet;
+	public GameObject house;
+	public GameObject ground;
 	private bool InFront;
 	public Vector2 speed = new Vector2 (50, 50);
 	private Vector2 movement;
@@ -14,7 +16,7 @@ public class PlayerScript : MonoBehaviour {
 	public Texture2D fullTex;
 	public GUIStyle progress_empty;
 	public GUIStyle progress_full;
-
+	Vector2 originalPosition;
 	//current progress
 	public float barDisplay;
 
@@ -25,6 +27,9 @@ public class PlayerScript : MonoBehaviour {
 
 	void Start () {
 		RigidBodyComponent = GetComponent<Rigidbody2D> ();
+
+		Instantiate (ground,new Vector2(this.transform.position.x,-0.15f), Quaternion.identity);
+		originalPosition = new Vector2 (this.transform.position.x,this.transform.position.y);
 	}
 	
 	// Update is called once per frame
@@ -49,6 +54,7 @@ public class PlayerScript : MonoBehaviour {
 			GameObject gameObject=(GameObject)Instantiate (bullet,new Vector2(), Quaternion.identity);
 			gameObject.transform.localPosition = new Vector2 (this.transform.position.x ,0.4f);
 			gameObject.transform.Rotate (0f, 0f, -90f);
+			gameObject.GetComponent<BulletMover> ().frick (this.transform.position.x);
 
 		}
 		//the player's health
@@ -69,6 +75,18 @@ public class PlayerScript : MonoBehaviour {
 				this.transform.Rotate (new Vector3(0f, -180f, 0f));
 			}
 
+		}
+		if (this.transform.position.x - originalPosition.x > 5) {
+			originalPosition = new Vector2 (this.transform.position.x, this.transform.position.y);
+			//GameObject gameObject=(GameObject)Instantiate (ground,new Vector2(this.transform.position.x,-0.15f), Quaternion.identity);
+
+
+		} 
+
+		 if (this.transform.position.x - originalPosition.x > 3) {
+			originalPosition = new Vector2 (this.transform.position.x, this.transform.position.y);
+			GameObject gameObject = (GameObject)Instantiate (ground, new Vector2 (this.transform.position.x+3, -0.15f), Quaternion.identity);
+			GameObject gameObject2 = (GameObject)Instantiate (house, new Vector2 (this.transform.position.x+10, 1.15f), Quaternion.identity);
 		}
 	}
 	void OnCollisionEnter2D(Collision2D col) {
