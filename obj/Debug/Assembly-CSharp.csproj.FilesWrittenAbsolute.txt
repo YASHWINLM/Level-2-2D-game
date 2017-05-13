@@ -15,3 +15,7 @@
 /Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/UnityEngine.PlaymodeTestsRunner.dll
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/UnityEngine.Analytics.dll
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/UnityEngine.HoloLens.dll
+/Users/league/Desktop/Level-2-2D-game/Temp/bin/Debug/UnityEngine.VR.dll

@@ -47,8 +47,7 @@ public class PlayerScript : MonoBehaviour {
 		}
 		if(Input.GetKeyDown(KeyCode.Space)){
 			GameObject gameObject=(GameObject)Instantiate (bullet,new Vector2(), Quaternion.identity);
-			gameObject.transform.SetParent (this.transform);
-			gameObject.transform.localPosition = new Vector2 (2f,-0.5f);
+			gameObject.transform.localPosition = new Vector2 (this.transform.position.x ,0.4f);
 			gameObject.transform.Rotate (0f, 0f, -90f);
 
 		}
@@ -74,7 +73,7 @@ public class PlayerScript : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.transform.name.Equals("jack(Clone)")){
-			Debug.Log ("player collided: " + (health-=10), col.transform);
+		Debug.Log ("player collided: " + (health-=10), col.transform);
 
 
 		}
