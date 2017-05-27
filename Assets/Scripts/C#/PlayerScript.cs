@@ -17,8 +17,10 @@ public class PlayerScript : MonoBehaviour {
 	public GUIStyle progress_empty;
 	public GUIStyle progress_full;
 	Vector2 originalPosition;
+	int currentGround=1;
 	//current progress
 	public float barDisplay;
+	bool isInvisible;
 
 	Vector2 pos = new Vector2(0,0);
 	Vector2 size = new Vector2(250,50);
@@ -39,16 +41,21 @@ public class PlayerScript : MonoBehaviour {
 
 			if(Input.GetKeyDown(KeyCode.UpArrow)){
 				GetComponent<SpriteRenderer> ().enabled=false;
-
+				isInvisible = true;
 
 			} else if(Input.GetKeyDown(KeyCode.DownArrow)){
 				GetComponent<SpriteRenderer> ().enabled=true;
+				isInvisible = false;
 			}
 		}
-		if(GetComponent<SpriteRenderer> ().enabled){
-			float inputX = Input.GetAxis("Horizontal");
+		if (!isInvisible) {
+			if (GetComponent<SpriteRenderer> ().enabled) {
+				float inputX = Input.GetAxis ("Horizontal");
 
-			movement = new Vector2 (inputX * speed.x, 0);
+				movement = new Vector2 (inputX * speed.x, 0);
+			}
+		} else {
+			movement = Vector2.zero;
 		}
 		if(Input.GetKeyDown(KeyCode.Space)){
 			GameObject gameObject=(GameObject)Instantiate (bullet,new Vector2(), Quaternion.identity);
@@ -84,9 +91,14 @@ public class PlayerScript : MonoBehaviour {
 		} 
 
 		 if (this.transform.position.x - originalPosition.x > 3) {
+			currentGround++;
 			originalPosition = new Vector2 (this.transform.position.x, this.transform.position.y);
 			GameObject gameObject = (GameObject)Instantiate (ground, new Vector2 (this.transform.position.x+3, -0.15f), Quaternion.identity);
-			GameObject gameObject2 = (GameObject)Instantiate (house, new Vector2 (this.transform.position.x+10, 1.15f), Quaternion.identity);
+			//GameObject gameObject2 = (GameObject)Instantiate (house, new Vector2 (this.transform.position.x+10, 1.15f), Quaternion.identity);
+		}
+		if(currentGround%5==0){
+			currentGround = 1;
+			GameObject gameObject2 = (GameObject)Instantiate (house, new Vector2 (this.transform.position.x + 10, 1.15f), Quaternion.identity);
 		}
 	}
 	void OnCollisionEnter2D(Collision2D col) {

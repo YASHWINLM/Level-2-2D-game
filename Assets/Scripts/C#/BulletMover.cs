@@ -15,13 +15,12 @@ public class BulletMover : MonoBehaviour {
 		originalX = x;
 	}
 		
-	
+
 	// Update is called once per frame
 	void Update () {
 		
 
-		if(this.transform.position.x+originalX>20|| originalX-this.transform.position.x>20){
-			
+		if(Mathf.Abs(this.transform.position.x) - Mathf.Abs(originalX)>20){
 			Destroy (this.gameObject);
 
 		}
